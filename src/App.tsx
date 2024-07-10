@@ -1,10 +1,15 @@
+import { AlertProvider } from "hooks/useAlert";
+import Alert from "hooks/useAlert/AlertComponent";
 import { BrowserRouter } from "react-router-dom";
 import { Routes } from "../src/routes";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Routes />
+      <AlertProvider>
+        <Routes />
+        <Alert />
+      </AlertProvider>
     </BrowserRouter>
   );
 };
