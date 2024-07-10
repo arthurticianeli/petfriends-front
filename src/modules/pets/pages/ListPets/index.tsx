@@ -158,7 +158,7 @@ export function ListPets() {
     try {
       await updatePetStatusUseCase.execute(updateStatusDto);
       setPets(
-        pets.map((pet) =>
+        pets?.map((pet) =>
           pet.id === petId ? { ...pet, status: newStatus } : pet
         )
       );
@@ -206,7 +206,7 @@ export function ListPets() {
         <Table>
           <TableHead>
             <TableRow>
-              {columns.map((column) => (
+              {columns?.map((column) => (
                 <TableCell
                   key={column.columnKey}
                   align={column.title === "Actions" ? "center" : "inherit"}
@@ -217,9 +217,9 @@ export function ListPets() {
             </TableRow>
           </TableHead>
           <TableBody>
-            {pets.map((pet, index) => (
+            {pets?.map((pet, index) => (
               <TableRow key={index}>
-                {columns.map((column) => (
+                {columns?.map((column) => (
                   <TableCell key={column.columnKey}>
                     {column.render
                       ? column.render(pet)

@@ -1,8 +1,31 @@
-import axios, { AxiosInstance, AxiosRequestConfig, AxiosResponse } from "axios";
+import axios, {
+  AxiosInstance,
+  AxiosRequestConfig,
+  AxiosResponse,
+  InternalAxiosRequestConfig,
+} from "axios";
 
 export const api: AxiosInstance = axios.create({
   baseURL: "http://localhost:8080/v1",
 });
+
+api.interceptors.request.use(
+  (config: InternalAxiosRequestConfig) => {
+    const token = localStorage.getItem("_auth");
+
+    const tokenJson = JSON.parse(token as string);
+
+    if (tokenJson) {
+      config.headers = config.headers || {};
+      config.headers.Authorization = `Bearer ${tokenJson.accessToken}`;
+    }
+
+    return config;
+  },
+  (error) => {
+    return Promise.reject(new Error(error));
+  }
+);
 
 export class ServiceConfig {
   private async request<T, R = AxiosResponse<T>>(

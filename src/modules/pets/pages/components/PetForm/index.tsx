@@ -37,7 +37,7 @@ const PetForm: React.FC = () => {
   const { petId } = useParams();
 
   const { control, handleSubmit, reset } = useForm<IPetDtoRequest>({
-    resolver: yupResolver(petFormSchema) as any,
+    resolver: yupResolver(petFormSchema),
   });
 
   const handleSave = handleSubmit(async (values: IPetDtoRequest) => {

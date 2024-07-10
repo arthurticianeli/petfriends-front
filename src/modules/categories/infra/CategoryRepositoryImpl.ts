@@ -8,8 +8,8 @@ import { ICategoryRepository } from "../domain/repositories/ICategoryRepository"
 
 const http = new ServiceConfig();
 export class CategoryRepositoryImpl implements ICategoryRepository {
-  async createCategory(Category: ICategoryDtoRequest): Promise<void> {
-    await http.post("/categories", Category);
+  async createCategory(category: ICategoryDtoRequest): Promise<void> {
+    await http.post("/categories", category);
   }
 
   async deleteCategoryById(id: number): Promise<void> {

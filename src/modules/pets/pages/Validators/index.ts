@@ -2,10 +2,10 @@ import * as yup from "yup";
 
 export const petFormSchema = yup
   .object({
-    id: yup.number().nullable(),
+    id: yup.number(),
     name: yup.string().required("Field required"),
-    description: yup.string().nullable(),
-    urlImage: yup.string().nullable(),
+    description: yup.string(),
+    urlImage: yup.string(),
     category: yup
       .object({
         id: yup.number().required("Field required"),

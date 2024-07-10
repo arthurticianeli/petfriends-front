@@ -3,8 +3,8 @@ import { ICategoryEntity } from "modules/categories/domain/entities/ICategoryEnt
 export interface IPetDtoRequest {
   id?: number;
   name: string;
-  description: string;
-  urlImage: string;
+  description?: string;
+  urlImage?: string;
   category: ICategoryEntity;
   birthDate: Date;
   status: string;
