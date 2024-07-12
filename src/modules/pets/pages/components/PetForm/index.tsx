@@ -47,7 +47,7 @@ const PetForm: React.FC = () => {
         showAlert("Pet updated successfully", "success");
         navigate("/pets");
       } catch (error: any) {
-        showAlert(error.response.data || "Error updating pet", "error");
+        showAlert(error?.response?.data || "Error updating pet", "error");
       }
     } else {
       try {
@@ -55,7 +55,7 @@ const PetForm: React.FC = () => {
         showAlert("Pet created successfully", "success");
         navigate("/pets");
       } catch (error: any) {
-        showAlert(error.response.data || "Error creating pet", "error");
+        showAlert(error?.response?.data || "Error creating pet", "error");
       }
     }
   });
@@ -75,7 +75,7 @@ const PetForm: React.FC = () => {
           status: response.status,
         });
     } catch (error: any) {
-      showAlert(error.response.data || "Error fetching pet", "error");
+      showAlert(error?.response?.data || "Error fetching pet", "error");
     }
   };
 

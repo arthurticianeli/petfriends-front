@@ -30,11 +30,11 @@ export class PetRepositoryImpl implements IPetRepository {
   }
 
   async findByFilterPaginated(
-    params: IPetFilterPaginatedDtoRequest
+    filter: IPetFilterPaginatedDtoRequest
   ): Promise<PaginationResponse<IPetDtoResponse>> {
     const response: AxiosResponse<PaginationResponse<IPetDtoResponse>> =
       await http.get("/pets/list", {
-        params,
+        params: filter,
       });
     return response.data;
   }

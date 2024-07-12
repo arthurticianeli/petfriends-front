@@ -3,6 +3,6 @@ import { PaginationRequest } from "types/PaginationRequest";
 
 export interface IPetFilterPaginatedDtoRequest extends PaginationRequest {
   name?: string;
-  category?: ICategoryEntity;
+  category?: string | ICategoryEntity;
   status?: string;
 }

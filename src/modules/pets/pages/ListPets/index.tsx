@@ -16,8 +16,10 @@ import {
   Tooltip,
   Typography,
 } from "@mui/material";
+import ImageViewer from "common/components/ImageViewer";
 import { useAlert } from "hooks/useAlert";
 import { IPetDtoResponse } from "modules/pets/domain/dtos/IPetDtoResponse";
+import { IPetFilterPaginatedDtoRequest } from "modules/pets/domain/dtos/IPetFilterPaginatedDtoRequest";
 import { IPetUpdateStatusDtoRequest } from "modules/pets/domain/dtos/IPetUpdateStatusDtoRequest";
 import { EPetStatus } from "modules/pets/domain/entities/EPetStatus";
 import { DeletePetByIdUseCase } from "modules/pets/domain/usecases/DeletePetByIdUseCase";
@@ -25,8 +27,13 @@ import { FindPetsByFiltroPaginadoUseCase } from "modules/pets/domain/usecases/Fi
 import { UpdatePetStatusUseCase } from "modules/pets/domain/usecases/UpdatePetStatusUseCase";
 import { PetRepositoryImpl } from "modules/pets/infra/PetRepositoryImpl";
 
+import { ICategoryEntity } from "modules/categories/domain/entities/ICategoryEntity";
+import { GetAllCategoriesUseCase } from "modules/categories/domain/usecases/GetAllCategoriesUseCase";
+import { CategoryRepositoryImpl } from "modules/categories/infra/CategoryRepositoryImpl";
 import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
+import FilterComponent from "../components/FilterForm";
 
 interface IColumn {
   title: string | React.ReactNode;
@@ -38,16 +45,23 @@ export function ListPets() {
   const navigate = useNavigate();
   const { showAlert } = useAlert();
   const petRepository = new PetRepositoryImpl();
+  const categoryRepository = new CategoryRepositoryImpl();
   const findByFilterPaginatedUseCase = new FindPetsByFiltroPaginadoUseCase(
     petRepository
   );
   const updatePetStatusUseCase = new UpdatePetStatusUseCase(petRepository);
   const deletePetUseCase = new DeletePetByIdUseCase(petRepository);
+  const getAllCategoriesUseCase = new GetAllCategoriesUseCase(
+    categoryRepository
+  );
 
   const [pets, setPets] = useState<IPetDtoResponse[]>([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [total, setTotal] = useState(100);
+
+  const { control, watch, handleSubmit } =
+    useForm<IPetFilterPaginatedDtoRequest>();
 
   const columns: IColumn[] = [
     { title: "Name", columnKey: "name" },
@@ -57,6 +71,17 @@ export function ListPets() {
       render: (pet) => pet?.category?.name,
     },
     { title: "Age", columnKey: "age" },
+    { title: "Description", columnKey: "description" },
+    {
+      title: "Birth Date",
+      columnKey: "birthDate",
+      render: (pet) => new Date(pet.birthDate).toLocaleDateString(),
+    },
+    {
+      title: "Url Image",
+      columnKey: "urlImage",
+      render: (pet) => <ImageViewer urlImage={pet.urlImage} />,
+    },
     {
       title: (
         <Box
@@ -123,6 +148,9 @@ export function ListPets() {
   const fetchData = async () => {
     try {
       const response = await findByFilterPaginatedUseCase.execute({
+        name: watch("name"),
+        category: (watch("category") as ICategoryEntity)?.name,
+        status: watch("status"),
         page: page + 1,
         size: rowsPerPage,
       });
@@ -174,7 +202,7 @@ export function ListPets() {
       setPets(pets.filter((pet) => pet.id !== petId));
       showAlert("Pet deleted successfully", "success");
     } catch (error: any) {
-      showAlert(error.response.data || "Error deleting pet", "error");
+      showAlert(error?.response?.data || "Error deleting pet", "error");
     }
   };
 
@@ -202,6 +230,12 @@ export function ListPets() {
       >
         Add Pet
       </Button>
+      <FilterComponent
+        control={control}
+        onSubmit={fetchData}
+        handleSubmit={handleSubmit}
+        getAllCategoriesUseCase={getAllCategoriesUseCase}
+      />
       <TableContainer component={Paper}>
         <Table>
           <TableHead>

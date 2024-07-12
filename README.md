@@ -1,46 +1,50 @@
-# Getting Started with Create React App
+# PetFriends Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este projeto é a interface de usuário para a aplicação PetFriends, uma plataforma dedicada a conectar amantes de animais de estimação. Utiliza uma série de tecnologias modernas para garantir uma experiência suave e responsiva.
 
-## Available Scripts
+## Tecnologias e Bibliotecas
 
-In the project directory, you can run:
+O projeto é construído com React e utiliza várias bibliotecas atualizadas para oferecer uma experiência rica ao usuário:
 
-### `npm start`
+- React 18.3.1: Uma biblioteca JavaScript para construir interfaces de usuário.
+- Material-UI 5.16.0: Uma biblioteca de componentes React para um desenvolvimento ágil e fácil.
+- Axios 1.7.2: Cliente HTTP baseado em promessas para o navegador e node.js.
+- React Router Dom 6.24.1: Biblioteca de roteamento dinâmico para React.
+- React Hook Form 7.52.1: Biblioteca para validação de formulários com hooks.
+- Yup 1.4.0: Construtor de esquema para análise e validação de valor.
+- Date-fns 3.6.0: Biblioteca moderna de manipulação de datas.
+- JWT Decode 4.0.0: Biblioteca para decodificar tokens JWT.
+- TypeScript 4.9.5: Superset de JavaScript que adiciona tipos estáticos.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Além de outras bibliotecas para testes e estilização.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## Como Subir o Projeto
 
-### `npm test`
+Para executar este projeto localmente, siga os passos abaixo:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. **Clone o Repositório**
 
-### `npm run build`
+   ```bash
+   git clone https://github.com/seu-usuario/petfriends-front.git
+   cd petfriends-front
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. **Instale as Dependências**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Certifique-se de que você tem o Node.js instalado em sua máquina. Então, execute:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+```bash
+npm install
+```
 
-### `npm run eject`
+Isso instalará todas as dependências necessárias para rodar o projeto.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+3. **Execute o Projeto**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Com as dependências instaladas, você pode iniciar o servidor de desenvolvimento:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+```bash
+npm start
+```
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+Isso iniciará o projeto em http://localhost:3000. Agora, você pode visualizar a aplicação no seu navegador.
