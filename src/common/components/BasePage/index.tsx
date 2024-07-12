@@ -1,10 +1,10 @@
 import CategoryIcon from "@mui/icons-material/Category";
 import PetsIcon from "@mui/icons-material/Pets";
 import CssBaseline from "@mui/material/CssBaseline";
+import { AuthenticatedPage } from "common/pages/AuthenticatedPage.tsx";
 import { useAuth } from "modules/authentication/hooks/useAuth/";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
-import { AuthenticatedPage } from "../AuthenticatedPage.tsx";
 import CustomAppBar from "./CustomAppBar";
 import CustomDrawer from "./CustomDrawer";
 import { DrawerHeader, Main } from "./styles";
@@ -24,7 +24,7 @@ interface PageProps {
   children: React.ReactNode;
 }
 
-const Page = ({ children }: PageProps) => {
+const BasePage = ({ children }: PageProps) => {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
   const auth = useAuth();
@@ -63,4 +63,4 @@ const Page = ({ children }: PageProps) => {
   );
 };
 
-export default Page;
+export default BasePage;

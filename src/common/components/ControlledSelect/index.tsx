@@ -3,9 +3,9 @@ import {
   FormHelperText,
   InputLabel,
   MenuItem,
-  Select,
 } from "@mui/material";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import { StyledSelect } from "./styled";
 
 interface Option {
   key: string;
@@ -43,12 +43,20 @@ const ControlledSelect = <FormType extends FieldValues>({
           margin="normal"
         >
           {label && <InputLabel>{label}</InputLabel>}
-          <Select
+          <StyledSelect
             label={label}
             value={value || ""}
             onChange={onChange}
             onBlur={onBlur}
             inputRef={ref}
+            MenuProps={{
+              PaperProps: {
+                style: {
+                  backgroundColor: "#f0f0f3",
+                  borderRadius: "10px",
+                },
+              },
+            }}
           >
             <MenuItem value="">
               <em>None</em>
@@ -62,7 +70,7 @@ const ControlledSelect = <FormType extends FieldValues>({
                 {option.value}
               </MenuItem>
             ))}
-          </Select>
+          </StyledSelect>
           {(error || helperMessage) && (
             <FormHelperText>{error?.message ?? helperMessage}</FormHelperText>
           )}

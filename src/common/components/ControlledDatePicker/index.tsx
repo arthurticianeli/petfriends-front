@@ -1,7 +1,8 @@
 import { FormControl, FormHelperText } from "@mui/material";
-import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
+import { StyledDatePicker } from "./style";
 
 interface Props<FormType extends FieldValues> {
   control: Control<FormType>;
@@ -42,7 +43,7 @@ export const ControlledCalendar = <FormType extends FieldValues>({
           margin="normal"
         >
           <LocalizationProvider dateAdapter={AdapterDateFns}>
-            <DatePicker
+            <StyledDatePicker
               onChange={(date: Date | null) => {
                 controllerOnChange(date);
                 if (onChange) onChange(date);

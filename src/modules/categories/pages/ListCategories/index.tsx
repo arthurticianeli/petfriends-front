@@ -110,7 +110,7 @@ export function ListCategories() {
       reset();
       fetchData();
     } catch (error: any) {
-      showAlert(error.message || "Erro ao criar categoria", "error");
+      showAlert(error.response.data || "Erro ao criar categoria", "error");
     }
   });
 
@@ -120,7 +120,7 @@ export function ListCategories() {
       fetchData();
       showAlert("Category deleted successfully", "success");
     } catch (error: any) {
-      showAlert(error.message || "Error deleting category", "error");
+      showAlert(error.response.data || "Error deleting category", "error");
     }
   };
 

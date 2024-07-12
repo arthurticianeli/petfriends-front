@@ -1,5 +1,7 @@
+import { Drawer } from "@mui/material";
 import MuiAppBar, { AppBarProps as MuiAppBarProps } from "@mui/material/AppBar";
 import { styled } from "@mui/material/styles";
+import { neumorphism } from "theme";
 
 const drawerWidth = 240;
 
@@ -50,3 +52,11 @@ export const DrawerHeader = styled("div")(({ theme }) => ({
   ...theme.mixins.toolbar,
   justifyContent: "flex-end",
 }));
+
+export const StyledDrawer = styled(Drawer)({
+  "& .MuiDrawer-paper": {
+    width: drawerWidth,
+    backgroundColor: neumorphism.backgroundColor,
+    boxShadow: neumorphism.boxShadow,
+  },
+});

@@ -1,6 +1,5 @@
-import Autocomplete from "@mui/material/Autocomplete";
+import { Autocomplete, TextField } from "@mui/material";
 import CircularProgress from "@mui/material/CircularProgress";
-import TextField from "@mui/material/TextField";
 import React, { useCallback, useEffect, useState } from "react";
 import { Control, Controller, FieldValues, Path } from "react-hook-form";
 
@@ -56,7 +55,9 @@ const ControlledAutocomplete = <FormType extends FieldValues, Response>({
           value={value ?? null}
           onChange={(_, val) => {
             onChangeValues(val);
-            onChange?.(val);
+            if (onChange) {
+              onChange(val);
+            }
           }}
           onInputChange={onInputChange}
           options={options}

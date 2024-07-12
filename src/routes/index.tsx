@@ -1,4 +1,4 @@
-import BasePage from "common/pages/BasePage";
+import BasePage from "common/components/BasePage";
 import NotFoundPage from "common/pages/NotFoundPage";
 import LoginPage from "modules/authentication/pages/Login";
 import { ListCategories } from "modules/categories/pages/ListCategories";

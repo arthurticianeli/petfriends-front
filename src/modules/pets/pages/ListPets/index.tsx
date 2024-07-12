@@ -174,7 +174,7 @@ export function ListPets() {
       setPets(pets.filter((pet) => pet.id !== petId));
       showAlert("Pet deleted successfully", "success");
     } catch (error: any) {
-      showAlert(error.message || "Error deleting pet", "error");
+      showAlert(error.response.data || "Error deleting pet", "error");
     }
   };
 

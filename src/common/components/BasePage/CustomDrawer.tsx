@@ -2,7 +2,6 @@ import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
 import ChevronRightIcon from "@mui/icons-material/ChevronRight";
 import {
   Divider,
-  Drawer,
   IconButton,
   List,
   ListItem,
@@ -12,6 +11,7 @@ import {
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { IMenuItem } from ".";
+import { StyledDrawer } from "./styles";
 
 const drawerWidth = 240;
 
@@ -31,7 +31,7 @@ const CustomDrawer = ({
   const theme = useTheme();
 
   return (
-    <Drawer
+    <StyledDrawer
       sx={{
         width: drawerWidth,
         flexShrink: 0,
@@ -64,7 +64,7 @@ const CustomDrawer = ({
           </ListItem>
         ))}
       </List>
-    </Drawer>
+    </StyledDrawer>
   );
 };
 

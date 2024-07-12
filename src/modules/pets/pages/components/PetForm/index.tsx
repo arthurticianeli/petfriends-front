@@ -17,7 +17,7 @@ import React from "react";
 import { useForm } from "react-hook-form";
 import { useNavigate, useParams } from "react-router-dom";
 import { extractKeyValueFromEnum } from "utils/extractKeyValueFromEnum";
-import { ControlledCalendar } from "../../../../../common/components/ControlledCalendar";
+import { ControlledCalendar } from "../../../../../common/components/ControlledDatePicker";
 import ControlledSelect from "../../../../../common/components/ControlledSelect";
 import ControlledTextField from "../../../../../common/components/ControlledTextField";
 import { petFormSchema } from "../../Validators";
@@ -45,17 +45,17 @@ const PetForm: React.FC = () => {
       try {
         await updatePetUseCase.execute(values);
         showAlert("Pet updated successfully", "success");
-        navigate("/");
+        navigate("/pets");
       } catch (error: any) {
-        showAlert(error.message || "Error updating pet", "error");
+        showAlert(error.response.data || "Error updating pet", "error");
       }
     } else {
       try {
         await createPetUseCase.execute(values);
         showAlert("Pet created successfully", "success");
-        navigate("/");
+        navigate("/pets");
       } catch (error: any) {
-        showAlert(error.message || "Error creating pet", "error");
+        showAlert(error.response.data || "Error creating pet", "error");
       }
     }
   });
@@ -75,7 +75,7 @@ const PetForm: React.FC = () => {
           status: response.status,
         });
     } catch (error: any) {
-      showAlert(error.message || "Error fetching pet", "error");
+      showAlert(error.response.data || "Error fetching pet", "error");
     }
   };
 
